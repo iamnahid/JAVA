@@ -1,0 +1,84 @@
+class Account{
+	protected  String accName;
+	protected String accId;
+	protected double balance;
+	
+	
+	Account(){
+				
+	System.out.println("Account CLass");
+	
+		}
+	Account(String accName,String accId, double balance){
+			this.accName=accName;
+			this.accId=accId;
+			this.balance=balance;
+			
+	}
+public	void deposit(int accAmount)
+	{
+			balance=balance-accAmount;
+	}
+	
+public	boolean withdraw(int accAmount)
+	{
+		if (balance > accAmount)
+		{
+			balance=balance-accAmount;
+			return true;
+		}
+		else return false;
+	}
+	
+public	void show(){
+			System.out.println(accName);
+			System.out.println(accId);
+			System.out.println(balance);
+	}
+	
+	}
+
+
+class OverDraftAccount extends Account{
+
+	 int overDraftLimit;
+	
+	OverDraftAccount(){
+				
+	System.out.println("OverDraftAccount CLass");
+	
+		}
+		
+	OverDraftAccount(String accName,String accId, double balance,int overDraftLimit){
+				
+		super(accName,accId,balance);
+		this.overDraftLimit=overDraftLimit;
+	
+		}
+
+public	 boolean withdraw(int amount) 
+	{
+			super.withdraw(amount);
+	}
+
+	}
+
+class Main {
+
+	public static void main(String arg[]){
+			
+			Account objectAccount1 =new Account("ACCOUNT","14-27856-3",10000.0);
+			OverDraftAccount objectOver =new OverDraftAccount("OVER","14-27656-3",10000.0,15000);
+
+			Account objectAccount2 =new OverDraftAccount("ACCOUNT","14-27856-3",20000.0,15000);
+			OverDraftAccount objectOver1=new OverDraftAccount("OVER","14-27656-3",30000.0,15000);
+
+			objectAccount1.show();
+			objectOver.show();
+			objectAccount2.show();
+
+			
+			}
+
+
+	}
